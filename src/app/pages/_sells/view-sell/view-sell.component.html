@@ -1,0 +1,81 @@
+<div *ngIf="sell" style="padding: 2%; width: 100%;">
+
+    <mat-progress-bar color="warn" mode="determinate" [value]="progress"></mat-progress-bar>
+    <br>
+    <mat-vertical-stepper style="float: left; width: 50%; background-color: white;" [linear]="isLinear">
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Usted tiene el paquete</ng-template>
+                <p>Usted tiene el paquete, el siguiente paso será contratar a un Flex para que envía su paquete</p>
+                <hr>
+                <mat-form-field style="display: none">
+                    <!-- <mat-label>Usted posee el paquete</mat-label> -->
+                    <input matInput required formControlName="firstCtrl">
+                </mat-form-field>
+                <div *ngIf="firstFormGroup.get('firstCtrl').valid">
+                    <p>Usted tiene el producto y está a la espera del Flex</p>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>En espera de Flex</ng-template>
+                <p>El paquete esta en espera para que el Flex lo pase a recoger. Aguarda que ya vendrá!</p>
+                <hr>
+                <mat-form-field style="display: none">
+                    <!-- <mat-label>El producto está en espera para que el Flex lo pase a recoger</mat-label> -->
+                    <input matInput formControlName="secondCtrl" required>
+                </mat-form-field>
+                <div *ngIf="secondFormGroup.get('secondCtrl').valid">
+                    <p>Has estado en espera del user Flex. El mismo ya tiene su producto y está en camino!</p>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step *ngIf="sell.status  != 'FLEX_HAVE'" [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>En camino</ng-template>
+                <p>Su producto ya se encuentra en camino. Si el Flex no llega a timepo a entregar su paquete usted podrá ingresas a esta misma pantalla y podrá ver el status de su paquete</p>
+                <hr>
+                <mat-form-field style="display: none">
+                    <!-- <mat-label>Su paquete está ne camino a ser entregado</mat-label> -->
+                    <input matInput formControlName="thirdCtrl" required >
+                </mat-form-field>
+                <div *ngIf="thirdFormGroup.get('thirdCtrl').valid">
+                    <p>¡Su producto ya ha sido entregado! ¡Felicidades!</p>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step *ngIf="sell.status == 'FLEX_HAVE'" [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Flex lo tiene</ng-template>
+                <p>Flex tiene su paquete y no ha llegado a entregarlo en el día. Será prioridad para el entregarlo lo antes posible.</p>
+                <hr>
+                <mat-form-field style="display: none">
+                    <input matInput formControlName="thirdCtrl" required style="display: none">
+                </mat-form-field>
+                <!-- <div *ngIf="fourFormGroup.get('fourCtrl').valid">
+                    <p>Flex ya ha entregado</p>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div> -->
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Entregado</ng-template>
+            <p>Su paquete ha sido entregado con exito! Felicidades!</p>
+            <!-- <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div> -->
+        </mat-step>
+    </mat-vertical-stepper>
+
+    <div style="float: left; padding: 3%; width: 50%;">
+        <h3 align="center">Datos de la venta</h3>
+        <hr>
+        <br>
+        
+    </div>
+</div>

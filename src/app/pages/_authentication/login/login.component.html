@@ -1,0 +1,40 @@
+<div class="page background-pattern" fxLayout="column" fxLayoutAlign="center center">
+  <div [@fadeInUp] class="card border-radius elevation">
+    <div class="header padding" fxLayout="column" fxLayoutAlign="center center">
+      <!-- <div class="logo fill-primary-contrast"> -->
+        <img src="./assets/img/instantFlexBrand.jpeg" alt="instantFlexBrand" width="100%" height="200px">
+      <!-- </div> -->
+    </div>
+    <div class="padding" fxLayout="column" fxLayoutGap="16px" [formGroup]="form">
+      <div fxFlex="auto" fxLayout="column">
+        <mat-form-field fxFlex="grow">
+          <mat-label>E-Mail</mat-label>
+          <input matInput required formControlName="email">
+          <mat-error *ngIf="form.get('email').hasError('required')">Necesitamos tu email para poder logearte</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="grow">
+          <mat-label>Contraseña</mat-label>
+          <input matInput [type]="inputType" formControlName="password" required>
+          <button type="button" mat-icon-button matSuffix (click)="toggleVisibility()" matTooltip="Toggle Visibility">
+            <mat-icon *ngIf="visible">visibility</mat-icon>
+            <mat-icon *ngIf="!visible">visibility_off</mat-icon>
+          </button>
+          <mat-hint>Click en el ojo para revelar la contraseña</mat-hint>
+          <mat-error *ngIf="form.get('password').hasError('required')">Necesitamos tu contraseña para poder logearte</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-checkbox class="caption" formControlName="rememberMe">Recordarme</mat-checkbox>
+        <a class="caption" [routerLink]="['/forgot-password']">Has olvidado tu contraseña?</a>
+      </div>
+      <button type="button" color="primary" mat-raised-button (click)="send()">
+        INICIAR SESIÓN
+      </button>
+      <p class="secondary-text text-center">
+         ¿No tienes cuenta aún?<br/>
+        <a href="https://api.whatsapp.com/send?phone=5491138229217&text=Hola,%20Instant%20Flex!%20quiero%20solicitar%20una%20cuenta%20nueva!">Click aca para solicitar una nueva</a>
+      </p>
+    </div>
+  </div>
+</div>

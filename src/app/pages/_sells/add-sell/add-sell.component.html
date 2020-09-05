@@ -1,0 +1,129 @@
+<mat-grid-list class="bg-light" cols="2" rowHeight="70px" [formGroup]="form">
+
+    <!-- Product -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Producto a vender</mat-label>
+            <mat-select required formControlName="product">
+                <mat-option *ngFor="let prod of productsArray" [value]="prod._id">
+                    {{prod.title}} - stock: {{prod.stock}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('product').touched && form.get('product').invalid">El producto es requerido
+            </mat-error>
+        </mat-form-field>
+
+    </mat-grid-tile>
+
+    <!-- Client Name -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre del cliente</mat-label>
+            <input matInput required type="text" formControlName="clientName" name="clientName">
+            <mat-error *ngIf="form.get('clientName').touched && form.get('clientName').invalid">El nombre es
+                requerido
+            </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- <mat-grid-tile colspan="1" rowspan="4">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>{{form.get('title').value | defaultData:'Producto de prueba'}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image
+                [src]="form.get('img').value | defaultData:'https://material.angular.io/assets/img/examples/shiba2.jpg' ">
+            <mat-card-content>
+                <span>${{form.get('price').value | defaultData:'500'}}</span>
+                <span style="float: right;">{{form.get('stock').value | defaultData:'3'}} disponibles</span>
+                <hr>
+                <p>
+                    {{
+                    form.get('description').value | defaultData:'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.'
+                }}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile> -->
+
+    <!-- Client surname -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido del cliente</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="clientSurname">
+            <mat-error *ngIf="form.get('clientSurname').touched && form.get('clientSurname').invalid">El apellido es
+                requerido
+            </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Client DNI  -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>DNI del cliente</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="clientDNI">
+            <mat-error *ngIf="form.get('clientDNI').touched && form.get('clientDNI').invalid">El DNI es requerido
+            </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Client phone -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono del cliente</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="clientPhone">
+            <mat-error *ngIf="form.get('clientPhone').touched && form.get('clientPhone').invalid">El teléfono es
+                requerido</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Postal code -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Codigo postal</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="postalCode">
+            <mat-error *ngIf="form.get('postalCode').touched && form.get('postalCode').invalid">El codigo postal es
+                requerido</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Client address -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Dirección exacta del cliente</mat-label>
+            <input matInput required type="text" class="example-right-align" placeholder="Ej: Cabildo 2345"
+                formControlName="clientAdress">
+            <mat-error *ngIf="form.get('clientAdress').touched && form.get('clientAdress').invalid">La dirección es
+                requerida</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- city -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Ciudad</mat-label>
+            <input matInput required type="text" class="example-right-align" placeholder="Ej: CABA"
+                formControlName="city">
+            <mat-error *ngIf="form.get('city').touched && form.get('city').invalid">La ciudad es
+                requerida</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- solicited stock -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Cantidad del producto solicitado por el cliente</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="stock">
+            <mat-error *ngIf="form.get('stock').touched && form.get('stock').invalid">La dirección es
+                requerida</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <button mat-raised-button color="accent" (click)="send()">Publicar compra</button>
+    </mat-grid-tile>
+
+</mat-grid-list>

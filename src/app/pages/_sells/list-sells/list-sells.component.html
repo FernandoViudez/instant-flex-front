@@ -1,0 +1,43 @@
+<fury-list name="Ventas" [columns]="columns" (filterChange)="onFilterChange($event)">
+    <div class="actions">
+        <button class="create" (click)="addSell()" type="button" mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <table [dataSource]="dataSource" mat-table matSort>
+
+        <ng-container *ngFor="let column of columns">
+            <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+                <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
+                <td *matCellDef="let row" mat-cell>
+                    <div *ngIf="column.name != 'Producto'">
+                        {{ row[column.property] }}
+                    </div>
+                    <div *ngIf="column.name == 'Producto'">
+                        {{ row.productId?.title }}
+                    </div>
+                </td>
+            </ng-container>
+        </ng-container>
+
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+            <th *matHeaderCellDef class="actions-cell" mat-header-cell mat-sort-header></th>
+            <td *matCellDef="let row" class="actions-cell" mat-cell>
+                <button type="button" mat-icon-button
+                    (click)="onViewSell(row._id)">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: visibleColumns;"
+            class="clickable route-animations-elements" mat-row></tr>
+    </table>
+
+    <mat-paginator class="paginator" [pageSizeOptions]="[10, 20, 25]" showFirstLastButtons></mat-paginator>
+
+</fury-list>

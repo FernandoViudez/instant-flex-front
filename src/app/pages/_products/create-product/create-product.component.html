@@ -1,0 +1,74 @@
+<mat-grid-list class="bg-coral" cols="2" rowHeight="150px" [formGroup]="form">
+    <!-- Title -->
+    <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Titulo del producto</mat-label>
+            <input matInput required type="text" formControlName="title" name="title">
+            <mat-error *ngIf="form.get('title').touched && form.get('title').invalid">El titulo es requerido</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="4">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>{{form.get('title').value | defaultData:'Producto de prueba'}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image
+                [src]="form.get('img').value | defaultData:'https://material.angular.io/assets/img/examples/shiba2.jpg' ">
+            <mat-card-content>
+                <span>${{form.get('price').value | defaultData:'500'}}</span>
+                <span style="float: right;">{{form.get('stock').value | defaultData:'3'}} disponibles</span>
+                <hr>
+                <p>
+                    {{
+                    form.get('description').value | defaultData:'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.'
+                }}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <!-- Description -->
+    <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Descripcion</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="description">
+            <mat-error *ngIf="form.get('description').touched && form.get('description').invalid">La descripcion es requerida
+            </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Price -->
+    <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Precio</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="price">
+            <mat-error *ngIf="form.get('price').touched && form.get('price').invalid">El precio es requerido</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Stock -->
+    <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Stock</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="stock">
+            <mat-error *ngIf="form.get('stock').touched && form.get('stock').invalid">El stock es requerido</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Img -->
+    <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Dirección de imagen (Opcional)</mat-label>
+            <input matInput type="text" class="example-right-align" formControlName="img">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="1">
+        <button *ngIf="!param" mat-raised-button color="accent" (click)="send()">Publicar producto</button>
+        <button *ngIf="param" mat-raised-button color="accent" (click)="update()">Editar producto</button>
+    </mat-grid-tile>
+
+</mat-grid-list>
