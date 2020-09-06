@@ -15,6 +15,7 @@ export class FlexGuardGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
             
       if(this.authService.validateAndReturnToken(this.storageService.getTokenIntoStorage())){
+        console.log(this.authService.validateAndReturnToken(this.storageService.getTokenIntoStorage()));
         return true;
       }else{
         this.router.navigate(['/login']);

@@ -1,1 +1,13 @@
-<p>packages works!</p>
+<div class="bg-lightblue">
+    <mat-selection-list style="padding-top: 0px;" [multiple]="false" class="several-bg">
+        <mat-list-option *ngFor="let item of dataSource" (click)="specificPackage(item)" [value]="item">
+            <mat-grid-list cols="3" rowHeight="30px">
+                <mat-grid-tile>{{item}}</mat-grid-tile>
+                <mat-grid-tile></mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-icon style="float: right;">chevron_right</mat-icon>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-list-option>
+    </mat-selection-list>
+</div>

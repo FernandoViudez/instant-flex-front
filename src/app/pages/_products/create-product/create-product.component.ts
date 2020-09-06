@@ -4,6 +4,7 @@ import { ProductService } from '../product.service';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'fury-create-product',
@@ -79,42 +80,58 @@ export class CreateProductComponent implements OnInit, OnDestroy {
       })
     }
 
+    let array = this.setArray();
+
     /** Then, all values all good, we build data object */
     let data: any = {};
-    ['title', 'description', 'price', 'stock', 'img']
-      .forEach(item => {
-        data[item] = this.form.controls[item]?.value;
-      });
+
+    array.forEach(item => {
+      data[item] = this.form.controls[item]?.value;
+    });
 
     /** Then we call the service */
     this.sb = this.productsService.createProduct(data)
       .subscribe(data => {
-        this.snack.open('Producto creado!', 'CERRAR', {duration: 3000})
+        this.snack.open('Producto creado!', 'CERRAR', { duration: 3000 })
         this.router.navigate(['/products/list']);
       })
 
   }
 
-  update(){
+  update() {
     if (this.form.invalid) {
       return Object.values(this.form.controls).forEach(control => {
         control.markAsTouched();
       })
     }
 
+    let array = this.setArray();
+
     /** Then, when all values are well, we build data object */
     let propertiesToUpdate: any = {};
-    ['title', 'description', 'price', 'stock', 'img']
-      .forEach(item => {
-        propertiesToUpdate[item] = this.form.controls[item]?.value;
-      });
+
+    array.forEach(item => {
+      propertiesToUpdate[item] = this.form.controls[item]?.value;
+    });
 
     /** Then we call the service */
     this.sb = this.productsService.updateProduct({ propertiesToUpdate }, this.param)
       .subscribe(data => {
-        this.snack.open('Producto editado!', 'CERRAR', {duration: 3000})
+        this.snack.open('Producto editado!', 'CERRAR', { duration: 3000 })
         this.router.navigate(['/products/list']);
       })
+  }
+
+  setArray() {
+    /** If an image isn't sended, then we just send nothing to set an optional one */
+    let array = ['title', 'description', 'price', 'stock', 'img'];
+
+    if (this.form.get("img").value.includes('https://material.angular.io/assets/img/examples/shiba2.jpg') || this.form.get("img").value == '') {
+      let index = array.indexOf("img");
+      array.splice(index, 1);
+    }
+
+    return array;
   }
 
   ngOnDestroy() {

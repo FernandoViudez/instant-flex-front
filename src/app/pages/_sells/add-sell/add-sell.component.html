@@ -64,7 +64,7 @@
     <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
         <mat-form-field appearance="fill">
             <mat-label>DNI del cliente</mat-label>
-            <input matInput required type="text" class="example-right-align" formControlName="clientDNI">
+            <input matInput required type="number" class="example-right-align" formControlName="clientDNI">
             <mat-error *ngIf="form.get('clientDNI').touched && form.get('clientDNI').invalid">El DNI es requerido
             </mat-error>
         </mat-form-field>
@@ -74,7 +74,7 @@
     <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
         <mat-form-field appearance="fill">
             <mat-label>Telefono del cliente</mat-label>
-            <input matInput required type="text" class="example-right-align" formControlName="clientPhone">
+            <input matInput required type="number" class="example-right-align" formControlName="clientPhone">
             <mat-error *ngIf="form.get('clientPhone').touched && form.get('clientPhone').invalid">El teléfono es
                 requerido</mat-error>
         </mat-form-field>
@@ -84,7 +84,7 @@
     <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
         <mat-form-field appearance="fill">
             <mat-label>Codigo postal</mat-label>
-            <input matInput required type="text" class="example-right-align" formControlName="postalCode">
+            <input matInput required type="number" class="example-right-align" formControlName="postalCode">
             <mat-error *ngIf="form.get('postalCode').touched && form.get('postalCode').invalid">El codigo postal es
                 requerido</mat-error>
         </mat-form-field>
@@ -116,7 +116,7 @@
     <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
         <mat-form-field appearance="fill">
             <mat-label>Cantidad del producto solicitado por el cliente</mat-label>
-            <input matInput required type="text" class="example-right-align" formControlName="stock">
+            <input matInput required type="number" class="example-right-align" formControlName="stock">
             <mat-error *ngIf="form.get('stock').touched && form.get('stock').invalid">La dirección es
                 requerida</mat-error>
         </mat-form-field>

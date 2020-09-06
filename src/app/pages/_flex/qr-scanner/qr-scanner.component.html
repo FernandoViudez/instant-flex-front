@@ -1,1 +1,34 @@
-<p>qr-scanner works!</p>
+<div class="scanner-shell" [hidden]="!hasDevices">
+
+    <header>
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <select matNativeControl matInput (change)="onDeviceSelectChange($event.target.value)">
+                <option value="" [selected]="!currentDevice">Ningún dispositivo seleccionado</option>
+                <option *ngFor="let device of availableDevices" [value]="device.deviceId"
+                    [selected]="currentDevice && device.deviceId === currentDevice.deviceId">{{device.label}}</option>
+            </select>
+        </mat-form-field>
+    </header> 
+
+
+    <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
+        [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+        (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+
+</div>
+
+<ng-container *ngIf="hasPermission === undefined">
+
+    <h2>Esperando por permisos...</h2>
+
+    <blockquote>
+        Si to dispositivo no tiene cámara, no te preguntaremos por lo mismos.
+    </blockquote>
+
+</ng-container>
+
+<ng-container *ngIf="hasPermission === false">
+
+    <h2>Has denegado los permisos de tu cámara.</h2>
+
+</ng-container>

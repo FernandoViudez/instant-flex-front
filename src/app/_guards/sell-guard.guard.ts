@@ -15,9 +15,9 @@ export class SellGuardGuard implements CanActivate {
     state: RouterStateSnapshot): boolean {
             
       if(this.authService.validateAndReturnToken(this.storageService.getTokenIntoStorage())){
+        console.log(this.authService.validateAndReturnToken(this.storageService.getTokenIntoStorage()));
         return true;
       }else{
-        console.log("True");
         this.router.navigate(['/login']);
         return false;
       }

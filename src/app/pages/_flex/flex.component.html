@@ -1,6 +1,21 @@
-<div>
+<div class="bg-index">
+    <br>
+    <h2 align="center" style="margin-top: 0px;">¡Bienvenido {{name}}!</h2>
+    <hr>
+    <div>
 
-    <button [routerLink]=""> Empezar a escanear</button>
-    <button [routerLink]="">Paquetes en cola</button>
+        <mat-grid-list cols="1" rowHeight="150px">
+            <mat-grid-tile>
+                <button mat-raised-button color="primary" [routerLink]="['scanner']">
+                    Escanear paquetes
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button mat-raised-button color="accent" [routerLink]="['packages']">
+                    Lista de paquetes
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
 
+    </div>
 </div>

@@ -44,7 +44,7 @@
     <mat-grid-tile colspan="1" rowspan="1">
         <mat-form-field appearance="fill">
             <mat-label>Precio</mat-label>
-            <input matInput required type="text" class="example-right-align" formControlName="price">
+            <input matInput required type="number" class="example-right-align" formControlName="price">
             <mat-error *ngIf="form.get('price').touched && form.get('price').invalid">El precio es requerido</mat-error>
         </mat-form-field>
     </mat-grid-tile>
@@ -53,7 +53,7 @@
     <mat-grid-tile colspan="1" rowspan="1">
         <mat-form-field appearance="fill">
             <mat-label>Stock</mat-label>
-            <input matInput required type="text" class="example-right-align" formControlName="stock">
+            <input matInput required type="number" class="example-right-align" formControlName="stock">
             <mat-error *ngIf="form.get('stock').touched && form.get('stock').invalid">El stock es requerido</mat-error>
         </mat-form-field>
     </mat-grid-tile>

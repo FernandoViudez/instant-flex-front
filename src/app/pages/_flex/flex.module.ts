@@ -7,14 +7,29 @@ import { PackagesComponent } from './packages/packages.component';
 import { PackageComponent } from './packages/package/package.component';
 import { DniComponent } from './packages/dni/dni.component';
 import { FlexRoutingModule } from './flex.routing.module';
-
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MaterialModule } from 'src/@fury/shared/material-components.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
   declarations: [FlexComponent, QrScannerComponent, AdministrateComponent, PackagesComponent, PackageComponent, DniComponent],
   imports: [
     CommonModule,
-    FlexRoutingModule
+    FlexRoutingModule,
+    MatListModule,
+    MaterialModule,
+    MatIconModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatTableModule,
+    ZXingScannerModule,
+    MatSnackBarModule
   ]
 })
 export class FlexModule { }

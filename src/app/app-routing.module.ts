@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { FlexGuardGuard } from './_guards/flex-guard.guard';
 import { SellGuardGuard } from './_guards/sell-guard.guard';
@@ -20,11 +20,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/_authentication/set-password/set-password.module').then(m => m.SetPasswordModule),
   },
 
+  /** For flex users */
+  {
+    path: 'flex',
+    loadChildren: () => import("./pages/_flex/flex.module").then(m => m.FlexModule),
+    canActivate: [FlexGuardGuard]
+  },
+
   /** For sell users */
   {
     path: '',
     component: LayoutComponent,
-    children: [ 
+    children: [
       {
         path: '',
         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
@@ -35,31 +42,24 @@ const routes: Routes = [
       // },
       {
         path: 'products',
-        loadChildren: () => import("./pages/_products/products.module").then( m => m.ProductsModule ),
+        loadChildren: () => import("./pages/_products/products.module").then(m => m.ProductsModule),
       },
       {
         path: 'sells',
-        loadChildren: () => import("./pages/_sells/sells.module").then( m => m.SellsModule ),
+        loadChildren: () => import("./pages/_sells/sells.module").then(m => m.SellsModule),
       },
     ],
     canActivate: [SellGuardGuard]
   },
 
-  { path: '**', redirectTo: '/', pathMatch: 'full' },
-
-  /** For flex users */
-  {
-    path: 'flex',
-    loadChildren: () => import("./pages/_flex/flex.module").then(m => m.FlexModule),
-    canActivate: [FlexGuardGuard]
-  },
+  { path: '**', redirectTo: '/' },
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled',
-    // preloadingStrategy: PreloadAllModules,
+    preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled',
     anchorScrolling: 'enabled'
   })],

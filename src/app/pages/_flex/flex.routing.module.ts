@@ -5,6 +5,7 @@ import { AdministrateComponent } from './administrate/administrate.component';
 import { PackagesComponent } from './packages/packages.component';
 import { PackageComponent } from './packages/package/package.component';
 import { DniComponent } from './packages/dni/dni.component';
+import { QrScannerComponent } from './qr-scanner/qr-scanner.component';
 
 const routes: Routes = [
   {
@@ -13,15 +14,19 @@ const routes: Routes = [
   },
   {
     path: 'scanner',
-    component: FlexComponent,
+    component: QrScannerComponent,
   },
   {
     path: 'packages',
     component: PackagesComponent,
-    children: [
-      { path: 'package', component: PackageComponent },
-      { path: 'package', component: DniComponent },
-    ]
+  },
+  {
+    path: 'package/:id',
+    component: PackageComponent,
+  },
+  {
+    path: 'dni',
+    component: DniComponent,
   },
   {
     path: 'administrate',

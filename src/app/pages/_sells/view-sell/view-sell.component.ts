@@ -112,4 +112,8 @@ export class ViewSellComponent implements OnInit {
     }
   }
 
+  senWpp(){
+    window.open(`https://api.whatsapp.com/send?phone=${this.sell.clientPhone}&text=Hola,%20soy%20el%20vendedor%20de%20el producto%20${this.sell.productId.title}!`, '_blank')
+  }
+
 }
