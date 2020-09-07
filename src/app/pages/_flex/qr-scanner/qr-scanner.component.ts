@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class QrScannerComponent implements OnInit {
 
+  scanedCodesArray = [];
+
   formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.CODE_128,
     BarcodeFormat.DATA_MATRIX,
@@ -46,10 +48,18 @@ export class QrScannerComponent implements OnInit {
   }
 
   onCodeResult(buyId: string) {
+
+    if(this.scanedCodesArray.find(item => item == buyId)){
+      console.log("Ya lo escaneaste!!");
+      return;
+    }else{
+      this.scanedCodesArray.push(buyId);
+    }
+    
     /** Here we add the package ID into packages at sell accounts schema */
     this.flexServices.addNewPackage(buyId)
     .subscribe ( data => {
-      this.snack.open("Producto añadido a la lista!", 'CERRAR', { duration: 5000 });
+      return this.snack.open("Producto añadido a la lista!", 'CERRAR', { duration: 5000 });
     })
   }
 
