@@ -13,8 +13,10 @@
     </mat-selection-list>
 
     <mat-grid-list cols="1" rowHeight="70px">
+        <mat-grid-tile *ngIf="packagesToDeliver">
+            <button mat-raised-button class="backButton" color="warn" (click)="markCannotDeliver()" [disabled]="packagesToDeliver.length == 0">Dejar entregas para el día siguiente</button>
+        </mat-grid-tile>
         <mat-grid-tile>
-            <button mat-raised-button class="backButton" color="warn" (click)="markCannotDeliver()">Dejar entregas para el día siguiente</button>
             <button mat-raised-button class="backButton" color="accent" (click)="backToFlex()">Volver</button>
         </mat-grid-tile>
     </mat-grid-list>

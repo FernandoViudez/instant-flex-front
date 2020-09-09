@@ -42,12 +42,12 @@
                 </button>
             </mat-grid-tile>
             <mat-grid-tile>
-                <button (click)="contactClient()" mat-raised-button color="accent" style="width: 100%;">Contactar
+                <button (click)="contactClient()" mat-raised-button color="accent" style="width: 100%;"  [disabled]="package.status != 'ON_ROUTE'">Contactar
                     <mat-icon>forum</mat-icon>
                 </button>
             </mat-grid-tile>
             <mat-grid-tile colspan="2">
-                <button (click)="finishDeliver()" mat-raised-button color="warn" style="width: 100%;">Finalizar entrega
+                <button (click)="finishDeliver()" mat-raised-button color="warn" style="width: 100%;" [disabled]="package.status != 'ON_ROUTE'">Finalizar entrega
                     <mat-icon>shopping_cart</mat-icon>
                 </button>
             </mat-grid-tile>

@@ -68,6 +68,7 @@ export class PackageComponent implements OnInit {
         this.flexService.onGenerateRoute(this.param)
           .subscribe((data: any) => {
             console.log(data);
+            this.getPackage(this.param);
           })
       })
 
@@ -85,7 +86,12 @@ export class PackageComponent implements OnInit {
       if(!response) return;
 
       this.flexService.onFinishDeliver(this.param, { getDeliverPersonId: response })
+      .subscribe(data => {
+        console.log(data);
+        /** Redirect the user to the list screens */
+        this.router.navigate(["/flex/packages"]);
 
+      })
     })
   }
 
