@@ -12,7 +12,8 @@ export class PackagesComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['Codgio del paquete', 'Acciones'];
 
-  dataSource: any[];
+  packagesToDeliver: any[];
+  packagesOnRoute: any[];
 
   constructor(private flexService: FlexService,
               private router: Router) { }
@@ -20,12 +21,20 @@ export class PackagesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sb = this.flexService.getAllPackages()
     .subscribe( (data: any) => {
-      this.dataSource = data.message;
+      this.packagesToDeliver = data.message;
     })
   }
 
   specificPackage(packageId: string){
     this.router.navigate(['flex/package', packageId ]);
+  }
+
+  backToFlex(){
+    this.router.navigate(['/flex']);
+  }
+
+  markCannotDeliver(){
+    
   }
 
   ngOnDestroy(){

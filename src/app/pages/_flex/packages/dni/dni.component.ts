@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FlexService } from '../../flex.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'fury-dni',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DniComponent implements OnInit {
 
-  constructor() { }
+  public personDNI: string;
+
+  constructor(private dialogRef: MatDialogRef<DniComponent>) { }
 
   ngOnInit(): void {
+  }
+
+  close(){
+    this.dialogRef.close(this.personDNI);
   }
 
 }

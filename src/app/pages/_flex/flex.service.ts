@@ -21,4 +21,12 @@ export class FlexService {
     return this.http.post(generateBackPath("newPackage"), { packageId });
   }
 
+  onGenerateRoute( buyId: string ){
+    return this.http.get(generateBackPath(`generateRoute/${buyId}`));
+  }
+
+  onFinishDeliver(buyId: string, data: { getDeliverPersonId: number }){
+    return this.http.post(generateBackPath(`deliverFinish/${buyId}`), data);
+  }
+
 }

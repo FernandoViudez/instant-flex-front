@@ -15,10 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { MaterialModule } from 'src/@fury/shared/material-components.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DialogComponent } from './packages/package/dialog/dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
-  declarations: [FlexComponent, QrScannerComponent, AdministrateComponent, PackagesComponent, PackageComponent, DniComponent],
+  declarations: [FlexComponent, QrScannerComponent, AdministrateComponent, PackagesComponent, PackageComponent, DniComponent, DialogComponent],
   imports: [
     CommonModule,
     FlexRoutingModule,
@@ -29,7 +33,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
     MatTableModule,
     ZXingScannerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ]
 })
 export class FlexModule { }

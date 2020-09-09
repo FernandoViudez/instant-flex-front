@@ -1,1 +1,10 @@
-<p>dni works!</p>
+<h2 align="center">Finalizar entrega</h2>
+<hr>
+<mat-form-field>
+    <mat-label>Ingresa el DNI de la persona que recibió el producto</mat-label>
+    <input matInput type="number" [(ngModel)]="personDNI">
+</mat-form-field>
+
+<div>
+    <button mat-raised-button (click)="close()">Finalizar entrega</button>
+</div>
