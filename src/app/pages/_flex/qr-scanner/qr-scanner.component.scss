@@ -1,0 +1,18 @@
+.camera{
+    padding: 10%;
+    width: 100% !important;
+    max-width: 700px !important;
+    overflow: hidden;
+    background-color: lightblue ;
+}
+
+@media (max-height: 500px){
+    .camera{
+        width: 100%;
+        height: 100% !important;
+        max-height: none !important;
+    }
+    .cameraContainer{
+        max-height: 500px;
+    }
+}
