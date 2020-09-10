@@ -1,0 +1,16 @@
+<div>
+
+    <h3>Ingresa tu dirección exacta actual</h3>
+    <hr>
+    <p>No haremos nada, simplemente necesitamos ese dato para generate la mejor ruta junto a google maps.</p>
+
+    <mat-form-field style="width: 100% !important;">
+        <mat-label>Actual dirección</mat-label>
+        <input matInput [(ngModel)]="currentAdress">
+    </mat-form-field>
+
+    <div>
+        <button mat-raised-button (click)="close()" color="accent" style="float: right;">Enviar y generar ruta</button>
+    </div>
+
+</div>

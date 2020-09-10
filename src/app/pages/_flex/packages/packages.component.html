@@ -1,19 +1,23 @@
 <div class="bg-lightblue">
+    <h2 style="margin: 0;  padding: 2%;" align="center">Paquetes por entregar</h2>
+    <p style="padding: 2%;">Si no llegas a entregar, es obligatorio indicar que no los has entregado así avisamos al vendedor.</p>
     <mat-selection-list style="padding-top: 0px;" [multiple]="false" class="several-bg">
-        <mat-list-option *ngFor="let item of dataSource" (click)="specificPackage(item)" [value]="item">
+        <mat-list-option *ngFor="let item of packagesToDeliver" (click)="specificPackage(item)" [value]="item">
             <mat-grid-list cols="3" rowHeight="30px">
-                <mat-grid-tile>{{item}}</mat-grid-tile>
-                <mat-grid-tile></mat-grid-tile>
-                <mat-grid-tile>
+                <mat-grid-tile colspan="2">{{item}}</mat-grid-tile>
+                <mat-grid-tile colspan="1">
                     <mat-icon style="float: right;">chevron_right</mat-icon>
                 </mat-grid-tile>
             </mat-grid-list>
         </mat-list-option>
     </mat-selection-list>
 
-    <mat-grid-list cols="1" rowhHeight="20px">
+    <mat-grid-list cols="1" rowHeight="70px">
+        <mat-grid-tile *ngIf="packagesToDeliver">
+            <button mat-raised-button class="backButton" color="warn" (click)="markCannotDeliver()" [disabled]="packagesToDeliver.length == 0">Dejar entregas para el día siguiente</button>
+        </mat-grid-tile>
         <mat-grid-tile>
-            <button mat-raised-button color="accent" [routerLink]="['/flex']"> Volver </button>
+            <button mat-raised-button class="backButton" color="accent" (click)="backToFlex()">Volver</button>
         </mat-grid-tile>
     </mat-grid-list>
 </div>
