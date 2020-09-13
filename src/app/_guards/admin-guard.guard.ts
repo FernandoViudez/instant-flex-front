@@ -8,20 +8,23 @@ import { StorageService } from '../_services/storage.service';
   providedIn: 'root'
 })
 export class AdminGuardGuard implements CanActivate {
-  
-  constructor(private authService: AuthService, private storageService: StorageService, private router: Router){  }
+
+  constructor(private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-            
-      if(this.authService.validateAndReturnToken(this.storageService.getTokenIntoStorage())){
-        return true;
-      }else{
-        this.router.navigate(['/login']);
-        return false;
-      }
+
+    let role = this.storageService.checkItem("role");
+    let token = this.storageService.getTokenIntoStorage();
+
+    if (role == 'USER_ADMIN' && this.authService.validateAndReturnToken(token)) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
 
   }
-  
+
 }
