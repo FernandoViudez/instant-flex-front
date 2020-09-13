@@ -47,17 +47,20 @@ export class QrScannerComponent implements OnInit {
     this.hasDevices = Boolean(devices && devices.length);
   }
 
-  onCodeResult(buyId: string) {
+  onCodeResult(data: string) {
 
-    if(this.scanedCodesArray.find(item => item == buyId)){
+    if(this.scanedCodesArray.find(item => item == data)){
       console.log("Ya lo escaneaste!!");
       return;
     }else{
-      this.scanedCodesArray.push(buyId);
+      this.scanedCodesArray.push(data);
     }
+
+    /** Into position 0 we get the buyId, into position 1, we get the postal code  */
+    let buy = data.split("-");
     
     /** Here we add the package ID into packages at sell accounts schema */
-    this.flexServices.addNewPackage(buyId)
+    this.flexServices.addNewPackage(buy[0], buy[1])
     .subscribe ( data => {
       return this.snack.open("Producto añadido a la lista!", 'CERRAR', { duration: 5000 });
     })

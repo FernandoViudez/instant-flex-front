@@ -22,6 +22,14 @@ export class PackagesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sb = this.flexService.getAllPackages()
     .subscribe( (data: any) => {
+
+      // Sort our array by postal code
+      data.message.sort(( a, b) => {
+        if(a.postalCode > b.postalCode) return 1;
+        if(a.postalCode < b.postalCode) return -1;
+        return 0;
+      })
+
       this.packagesToDeliver = data.message;
     })
   }

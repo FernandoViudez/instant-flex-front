@@ -37,17 +37,17 @@
     <div class="buttonsContainer">
         <mat-grid-list cols="2" rowHeight="50px">
             <mat-grid-tile>
-                <button (click)="sendToMaps()" mat-raised-button color="primary" style="width: 100%;" [disabled]="package.status == 'ON_ROUTE'">Generar ruta
+                <button (click)="sendToMaps()" mat-raised-button color="primary" style="width: 100%;" [disabled]="package.status == 'ON_ROUTE' || package.status == 'FINISHED'">Generar ruta
                     <mat-icon>alt_route</mat-icon>
                 </button>
             </mat-grid-tile>
             <mat-grid-tile>
-                <button (click)="contactClient()" mat-raised-button color="accent" style="width: 100%;"  [disabled]="package.status != 'ON_ROUTE'">Contactar
+                <button (click)="contactClient()" mat-raised-button color="accent" style="width: 100%;"  [disabled]="package.status != 'ON_ROUTE' || package.status == 'FINISHED'">Contactar
                     <mat-icon>forum</mat-icon>
                 </button>
             </mat-grid-tile>
             <mat-grid-tile colspan="2">
-                <button (click)="finishDeliver()" mat-raised-button color="warn" style="width: 100%;" [disabled]="package.status != 'ON_ROUTE'">Finalizar entrega
+                <button (click)="finishDeliver()" mat-raised-button color="warn" style="width: 100%;" [disabled]="package.status != 'ON_ROUTE' && package.status != 'FINISHED'">Finalizar entrega
                     <mat-icon>shopping_cart</mat-icon>
                 </button>
             </mat-grid-tile>
