@@ -28,4 +28,8 @@ export class StorageService {
     return localStorage.getItem(itemName);
   }
 
+  removeItem(itemName: string){
+    return localStorage.removeItem(itemName);
+  }
+  
 }

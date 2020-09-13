@@ -1,4 +1,10 @@
-<div class="scanner-shell" [hidden]="!hasDevices">
+<div class="camera" [hidden]="!hasDevices">
+
+    <div>
+        <h2 align="center">¡Bienvenido!</h2>
+        <hr>
+        <p>Aca podrás escanear todos tus productos. Una vez que termines le tendrás que dar al boton de abajo "Terminar de escanear" y usted será redirigido a la lista de productos escaneados</p>
+    </div>
 
     <header>
         <mat-form-field appearance="fill" style="width: 100%;">
@@ -11,9 +17,19 @@
     </header> 
 
 
-    <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
+    <zxing-scanner class="cameraContainer" [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
         [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
         (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+
+    <mat-grid-list cols="1" rowHeight="50px">
+        <mat-grid-tile>
+            <div style="margin-top: 5%">
+                <button mat-raised-button color="accent" [routerLink]="['/flex/packages']">
+                    Terminar de escanear
+                </button>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
 
 </div>
 

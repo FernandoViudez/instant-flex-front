@@ -11,8 +11,6 @@ export class AuthService {
   constructor(private http : HttpClient, 
               private storageSevice: StorageService) { }
 
-  public _user_role: string;
-
   validateAndReturnToken(token: string){
     try {
 

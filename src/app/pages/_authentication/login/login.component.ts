@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     let email = this.storageService.checkItem('email');
     let password = this.storageService.checkItem('password');
     
+    this.storageService.removeItem('role');
     this.storageService.deleteToken();
     
     this.form = this.fb.group({
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit {
             this.storageService.setItem("password", this.form.get("password").value)
           }
           
-          this.authService._user_role = data.message;
+          this.storageService.setItem("role", data.message);
 
           if (data.message == 'USER_SELL') return this.router.navigate(['/']);
           if (data.message == 'USER_FLEX') return this.router.navigate(['/flex']);

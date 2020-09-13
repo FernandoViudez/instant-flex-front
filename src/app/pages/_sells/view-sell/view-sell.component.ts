@@ -27,6 +27,7 @@ interface Sell {
   city: string,
   stock: number,
   status: string,
+  qrToScan: string
   getDeliverPersonId: number
 }
 
@@ -112,8 +113,55 @@ export class ViewSellComponent implements OnInit {
     }
   }
 
-  senWpp(){
+  senWpp() {
     window.open(`https://api.whatsapp.com/send?phone=${this.sell.clientPhone}&text=Hola,%20soy%20el%20vendedor%20de%20el producto%20${this.sell.productId.title}!`, '_blank')
+  }
+
+  onQrPrint() {
+    let ventana = window.open('', 'PRINT', 'height=400,width=600');
+    ventana.document.write('<html><head><title>Imprimir QR</title>');
+    ventana.document.write('</head><body >');
+    ventana.document.write(`
+    <div style="width: 80%; margin-left: 10%; margin-top: 10%; border: 1px solid black; height: 300px; padding: 3%">
+    <img src="${this.sell.qrToScan}" height="150px" style="float: right;">
+    <h3 style="float: right; color: grey">Instant Flex Envios</h3>  
+      
+      <div style="width: 100%;">
+        <h3 style="color: lightgrey;">Datos del paquete</h3>
+        <span><b>${this.sell.productId.title}</b></span><br>
+        <span><b>Precio:</b> ${this.sell.productId.price}</span><br>
+        <span><b>Stock:</b> ${this.sell.productId.stock}</span><br>
+      </div> 
+
+      <div style="width: 50%; margin-top: 7%; float: left">
+        <h3 style="color: lightgrey;">Datos del Cliente</h3>
+          <span><b>Nombre y apellido:</b> ${this.sell.clientName} ${this.sell.clientSurname}</span><br>
+          <span><b>Teléfono:</b> ${this.sell.clientPhone}</span><br>
+          <span><b>DNI:</b> ${this.sell.clientDNI}</span>
+      </div>
+      
+      <div style="width: 50%; float: left;">
+      <h3 style="color: lightgrey;">Datos del envío</h3>  
+          <span><b>Destino:</b> ${this.sell.clientAdress} ${this.sell.city} - CP${this.sell.postalCode}</span><br>
+          <span><b>Nombre del vendedor:</b> ${this.sell.seller.name} ${this.sell.seller.surname}</span><br>
+          <span><b>Zona del local:</b> ${this.sell.seller.zone}</span>
+      </div>
+      
+      <hr>
+      <div>
+        <span style="font-size: 10px">Los datos del cliente, así como los del vendedor está totalmente protegidos</span>
+        <span style="float: right">Desarrollado por Instant Flex<sup>&reg;</sup></span>
+      </div>
+      <hr>
+        
+    </div>
+      `);
+    ventana.document.write('</body></html>');
+    ventana.document.close();
+    ventana.focus();
+    ventana.print();
+    ventana.close();
+    return true;
   }
 
 }
