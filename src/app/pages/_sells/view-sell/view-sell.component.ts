@@ -146,13 +146,6 @@ export class ViewSellComponent implements OnInit {
           <span><b>Nombre del vendedor:</b> ${this.sell.seller.name} ${this.sell.seller.surname}</span><br>
           <span><b>Zona del local:</b> ${this.sell.seller.zone}</span>
       </div>
-      
-      <hr>
-      <div>
-        <span style="font-size: 10px">Los datos del cliente, así como los del vendedor está totalmente protegidos</span>
-        <span style="float: right">Desarrollado por Instant Flex<sup>&reg;</sup></span>
-      </div>
-      <hr>
         
     </div>
       `);
