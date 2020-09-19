@@ -11,6 +11,7 @@ import { PendingInterceptorModule } from '../@fury/shared/loading-indicator/pend
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { HttpInterceptorService } from './_services/http-interceptor.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   imports: [
@@ -32,6 +33,8 @@ import { HttpInterceptorService } from './_services/http-interceptor.service';
 
     // Displays Loading Bar when a Route Request or HTTP Request is pending
     PendingInterceptorModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 
     // Register a Service Worker (optional)
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
