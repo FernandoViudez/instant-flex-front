@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SellsService } from '../sells.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewSellModalComponent } from './view-modal/view-sell-modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Sell {
   seller: {
@@ -49,7 +52,10 @@ export class ViewSellComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
     private sellService: SellsService,
-    private _formBuilder: FormBuilder) { }
+    private _formBuilder: FormBuilder,
+    private matDialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params
@@ -155,6 +161,21 @@ export class ViewSellComponent implements OnInit {
     ventana.print();
     ventana.close();
     return true;
+  }
+
+  public takeDeliverService(){
+    /** Throw new dialog modal */
+    this.matDialog.open(ViewSellModalComponent)
+    .afterClosed().subscribe( (data: string) => {
+      
+      /** Subscribe and call a user flex */
+      this.sellService.demandFlex(this.param, { userFlexId: data })
+      .subscribe ( data => {
+        this.snackBar.open("Venta actualizada, hemos solicitado a su servicio de paquetería solicitado para que recoga el producto! (Hemos pasado sus datos de ubicación y numero de teléfono para establecer una comunicación más constante)", "CLOSE", { duration: 10000 });
+        this.ngOnInit();
+      })
+
+    })
   }
 
 }

@@ -13,7 +13,7 @@ export class SellsService {
     return this.http.get(generateBackPath('buysById'));
   }
 
-  getSellById(sellId: string){
+  getSellById(sellId: string) {
     return this.http.get(generateBackPath(`buy/${sellId}`));
   }
 
@@ -28,6 +28,10 @@ export class SellsService {
     stock: number,
   }) {
     return this.http.post(generateBackPath(`soldProduct/${productId}`), data)
+  }
+
+  demandFlex(buyId: string, data: { userFlexId: string; }) {
+    return this.http.put(generateBackPath(`demandFlex/${buyId}`), data);
   }
 
 }

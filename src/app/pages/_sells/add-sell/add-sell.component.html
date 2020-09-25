@@ -59,6 +59,17 @@
             </mat-error>
         </mat-form-field>
     </mat-grid-tile>
+    
+    <!-- Client email -->
+    <mat-grid-tile class="marginTop" colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+            <mat-label>Email del cliente</mat-label>
+            <input matInput required type="text" class="example-right-align" formControlName="clientEmail">
+            <mat-error *ngIf="form.get('clientEmail').touched && form.get('clientEmail').invalid">El email es
+                requerido
+            </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
 
     <!-- Client DNI  -->
     <mat-grid-tile class="marginTop" colspan="1" rowspan="1">

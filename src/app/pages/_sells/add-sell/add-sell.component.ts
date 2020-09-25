@@ -31,6 +31,7 @@ export class AddSellComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       clientName: ['', [Validators.required]],
       clientSurname: ['', [Validators.required]],
+      clientEmail: ['', [Validators.required, Validators.email]],
       clientDNI: ['', [Validators.required]],
       clientPhone: ['', [Validators.required]],
       postalCode: ['', [Validators.required]],
@@ -60,7 +61,7 @@ export class AddSellComponent implements OnInit, OnDestroy {
 
     /** Then, all values all good, we build data object */
     let data: any = {};
-    ['clientName', 'clientSurname', 'clientDNI', 'clientPhone', 'postalCode', 'clientAdress', 'city', 'stock']
+    ['clientName', 'clientSurname', 'clientEmail', 'clientDNI', 'clientPhone', 'postalCode', 'clientAdress', 'city', 'stock']
       .forEach(item => {
         data[item] = this.form.controls[item]?.value;
       });

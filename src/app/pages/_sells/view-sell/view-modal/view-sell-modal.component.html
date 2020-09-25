@@ -1,0 +1,12 @@
+
+<div [formGroup]="form" style="width: 90%;">
+    <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Escoge tu personal encargado de llevar el producto</mat-label>
+        <mat-select formControlName="flexId">
+            <mat-option *ngFor="let item of arrayFlexs" [value]="item._id">{{item.name + " " + item.surname}} -
+                {{item.zone}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('flexId').hasError('isRequired')">El campo es obligatorio. Debe seleccionar un flex para que pase a buscar su paquete y lo entregue.</mat-error>
+    </mat-form-field>
+    <button mat-button color="accent" (click)="close()">Aceptar & Solicitar Flex</button>
+</div>

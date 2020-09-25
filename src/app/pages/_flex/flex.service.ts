@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { generateBackPath } from 'src/app/_utils/generateUrlDomain';
+import { Roles } from 'src/app/_utils/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,10 @@ import { generateBackPath } from 'src/app/_utils/generateUrlDomain';
 export class FlexService {
 
   constructor(private http: HttpClient) { }
+
+  getAllUsers(){
+    return this.http.get(generateBackPath(`getAllUsers/${Roles.flexRole}`));
+  }
 
   getAllPackages(){
     return this.http.get(generateBackPath('getPackages'));

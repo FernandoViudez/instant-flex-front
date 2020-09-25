@@ -19,11 +19,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ViewSellModalComponent } from './view-sell/view-modal/view-sell-modal.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @NgModule({
-  declarations: [SellsComponent, ViewSellComponent, AddSellComponent, ListSellsComponent],
+  declarations: [SellsComponent, ViewSellComponent, AddSellComponent, ListSellsComponent, ViewSellModalComponent],
   imports: [
     CommonModule,
     SellsRoutingModule,
@@ -42,6 +44,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatSliderModule,
     MatProgressBarModule,
     MatGridListModule,
+    MatSelectModule
   ]
 })
 export class SellsModule { }
